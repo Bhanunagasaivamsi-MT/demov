@@ -3,56 +3,34 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_vgi",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
-					"timeout": "7.00:00:00",
+					"timeout": "0.12:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
-					{
-						"name": "Destination",
-						"value": "blobpool//vm_test1.csv"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "HttpReadSettings",
-							"requestMethod": "GET"
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings",
-							"skipLineCount": 0
-						}
-					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_vgi",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DestinationDataset_vgi",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				]
